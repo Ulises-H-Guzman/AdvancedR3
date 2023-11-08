@@ -1,0 +1,9 @@
+.Rhistory
+.RData
+.Rproj.user
+.Rbuildignore
+data-raw/nmr-omics/
+.Rdata
+.httr-oauth
+.DS_Store
+.quarto
