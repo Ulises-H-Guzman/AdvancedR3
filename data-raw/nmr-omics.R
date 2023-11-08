@@ -73,3 +73,5 @@ lipidomics <- full_join(
 # Save to `data/` ---------------------------------------------------------
 
 readr::write_csv(lipidomics, here::here("data/lipidomics.csv"))
+
+lipidomics <- readr::read_csv(here::here("data/lipidomics.csv"))
