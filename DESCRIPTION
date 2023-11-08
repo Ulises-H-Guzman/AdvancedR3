@@ -21,3 +21,6 @@ Suggests:
     renv
 URL: https://github.com/Ulises-H-Guzman/AdvancedR3
 BugReports: https://github.com/Ulises-H-Guzman/AdvancedR3/issues
+
+use_package("styler", "suggests")
+
