@@ -56,4 +56,21 @@ lipidomics %>% column_values_to_snake_case(metabolite)
 
 ```{r}
 lipidomics %>% metabolites_to_wider()
+
+
+lipidomics_wider = lipidomics %>% column_values_to_snake_case(metabolite) %>% metabolites_to_wider()
+
+```
+
+```{r}
+recipe(class~metabolite_lipid_ch_3_1 + age + gender,
+       data = lipidomics_wider)
+```
+
+```{r}
+recipe(lipidomics_wider) %>% 
+    update_role(metabolite_lipid_ch_3_1,age,gender,
+                new_role="predictor") %>% 
+    update_role(class, new_role = "outcome") %>% 
+    step_normalize(starts_with("metabolite_"))
 ```
