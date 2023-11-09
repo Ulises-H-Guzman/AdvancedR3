@@ -2,6 +2,8 @@ name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iterat
 data|stem|928365e0415a6980|43fae4011a0626f4|ef46db3751d8e999|1588979285||t19670.3751623711s|fbe3be1ee613161a|1749|rds|local|vector|||0.02|package tibble was built under R version 4.2.3|
 descriptive_stats|function|9c3e0c164a2cb0d3|||||||||||||||
 df_stats_by_metabolite|stem|c2aceaf006740375|06bc50c38cf95e77|26a8bb21619664f9|1571712024||t19670.3757427972s|e8f841da6aca5d39|402|rds|local|vector|||0.16||
+fig_metabolite_distribution|stem|813389875dd68467|fab028a148ebe7e6|293b31af6ae633ca|1263992679||t19670.4246552908s|338c3b712e9af6e8|83729|rds|local|vector|||0.02||
 file|stem|301125be9d4645ea|6f5a37980713f8c6|ef46db3751d8e999|-1301001980|data/lipidomics.csv|t19666.8422138328s|6f631a918b070454|24313|file|local|vector|||0.02|package tibble was built under R version 4.2.3|
 lipidomics|stem|b3223e0d05d576b4|7940706ee8ea8eb8|74cf55e34db4cd4e|-1170387675||t19670.3894006923s|03f6889c95fdc837|4883|rds|local|vector|||0.11||
 model|stem|c4164d976bc69d66|ae83bc723fe2997c|f737758389124ade|1816327236||t19670.3751627094s|241bf920421d9078|105|rds|local|vector|||0||
+plot_distributions|function|fe45d2411d2bfd6a|||||||||||||||
