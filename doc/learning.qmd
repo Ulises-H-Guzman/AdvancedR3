@@ -84,3 +84,27 @@ workflow() %>%
     add_recipe(recipe_specs)
 
 ```
+
+```{r}
+model_workflow <- create_model_workflow(
+    logistic_reg() %>%
+        set_engine("glm"),
+    lipidomics_wider %>%
+        create_recipe_spec(metabolite_lipid_ch_3_1)
+)
+
+model_workflow 
+```
+
+```{r}
+fitted_model <- model_workflow %>% 
+    fit(lipidomics_wider)
+
+fitted_model
+```
+
+```{r}
+fitted_model %>% 
+    extract_fit_parsnip() %>% 
+    broom::tidy(exponentiate = TRUE)
+```
