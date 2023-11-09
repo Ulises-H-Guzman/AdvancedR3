@@ -8,6 +8,7 @@ Imports:
     ggplot2,
     here,
     knitr,
+    quarto,
     readr,
     readxl,
     remotes,
