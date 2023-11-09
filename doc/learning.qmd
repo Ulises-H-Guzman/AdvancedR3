@@ -76,3 +76,11 @@ recipe_specs <- lipidomics_wider %>%
   create_recipe_spec(metabolite_lipid_ch_3_1)
 recipe_specs
 ```
+
+```{r}
+
+workflow() %>%
+    add_model(log_reg_specs) %>% 
+    add_recipe(recipe_specs)
+
+```
