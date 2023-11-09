@@ -1,4 +1,5 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
+.Random.seed|object|f97c8ee2edbfa6ac|||||||||||||||
 data|stem|928365e0415a6980|43fae4011a0626f4|ef46db3751d8e999|1588979285||t19670.3751623711s|fbe3be1ee613161a|1749|rds|local|vector|||0.02|package tibble was built under R version 4.2.3|
 descriptive_stats|function|9c3e0c164a2cb0d3|||||||||||||||
 df_stats_by_metabolite|stem|c2aceaf006740375|06bc50c38cf95e77|26a8bb21619664f9|1571712024||t19670.3757427972s|e8f841da6aca5d39|402|rds|local|vector|||0.16||
@@ -7,3 +8,4 @@ file|stem|301125be9d4645ea|6f5a37980713f8c6|ef46db3751d8e999|-1301001980|data/li
 lipidomics|stem|b3223e0d05d576b4|7940706ee8ea8eb8|74cf55e34db4cd4e|-1170387675||t19670.3894006923s|03f6889c95fdc837|4883|rds|local|vector|||0.11||
 model|stem|c4164d976bc69d66|ae83bc723fe2997c|f737758389124ade|1816327236||t19670.3751627094s|241bf920421d9078|105|rds|local|vector|||0||
 plot_distributions|function|fe45d2411d2bfd6a|||||||||||||||
+quarto_doc|stem|a359ba3875f9ea3d|d3457f74e24f7da9|21e9965a216da572|1886859688|doc/learning.html*doc/learning.qmd|t19670.4530771507s|c7d7f77356675d89|22006|file|local|vector|||8.39||

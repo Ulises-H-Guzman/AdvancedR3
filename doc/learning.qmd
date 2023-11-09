@@ -13,30 +13,28 @@ editor:
 ## Header 1
 
 ```{r setup}
+targets::tar_config_set(store=here::here("_targets"))
 library(tidyverse)
-source(here::here("R/functions.R"))
-lipidomics <- read_csv(here::here("data/lipidomics.csv"))
+library(targets)
+lipidomics <- tar_read(lipidomics)
 #| include: false
 # knitr::opts_chunk$set(echo = TRUE)
 ```
 
-#Basic statistics
+#Results
 
-```{r basic_stats}
-# Code chunk
+```{r}
 
-descriptive_stats(lipidomics)
+tar_read(df_stats_by_metabolite) %>% 
+    mutate(MeanSD = glue::glue("{value_mean} (SUM	24
+value_sd})"))  %>% 
+    select(Metabolite = metabolite, `Mean SD` = MeanSD) %>%
+    knitr::kable(caption ="Description statistics of the metabolites")
 
 ```
 
 ```{r}
-# Code chunk
 
-plot_distributions(lipidomics)
+tar_read(fig_metabolite_distribution)
 
 ```
-
-## This is poorly formatted
-
--   Definitely should have an empty space above this list.
--   This isn't a list, why not?
