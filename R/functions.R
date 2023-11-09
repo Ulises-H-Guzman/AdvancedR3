@@ -105,7 +105,7 @@ create_model_workflow <- function(model_spec,recipes_specs){
 
 tidy_model_output <- function(workflow_fitted_model){
     workflow_fitted_model %>%
-        workflows:extract_fit_parsnip() %>%
+        workflows::extract_fit_parsnip() %>%
         broom::tidy(exponentiate = TRUE)
 }
 
