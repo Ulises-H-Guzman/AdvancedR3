@@ -13,7 +13,7 @@ editor:
 ## Header 1
 
 ```{r setup}
-targets::tar_config_set(store=here::here("_targets"))
+targets::tar_config_set(store = here::here("_targets"))
 library(tidyverse)
 library(targets)
 library(tidymodels)
@@ -26,51 +26,53 @@ lipidomics <- tar_read(lipidomics)
 #Results
 
 ```{r}
-
-tar_read(df_stats_by_metabolite) %>% 
-    mutate(MeanSD = glue::glue("{value_mean} (SUM	24
-value_sd})"))  %>% 
-    select(Metabolite = metabolite, `Mean SD` = MeanSD) %>%
-    knitr::kable(caption ="Description statistics of the metabolites")
-
+tar_read(df_stats_by_metabolite) %>%
+  mutate(MeanSD = glue::glue("{value_mean} (SUM	24
+value_sd})")) %>%
+  select(Metabolite = metabolite, `Mean SD` = MeanSD) %>%
+  knitr::kable(caption = "Description statistics of the metabolites")
 ```
 
 ```{r}
-
 tar_read(fig_metabolite_distribution)
-
 ```
 
 ```{r}
-
-log_reg_specs <- logistic_reg() %>% 
-    set_engine("glm")
+log_reg_specs <- logistic_reg() %>%
+  set_engine("glm")
 log_reg_specs
-
 ```
 
 ```{r}
 lipidomics %>% column_values_to_snake_case(metabolite)
-
 ```
 
 ```{r}
 lipidomics %>% metabolites_to_wider()
 
 
-lipidomics_wider = lipidomics %>% column_values_to_snake_case(metabolite) %>% metabolites_to_wider()
-
+lipidomics_wider <- lipidomics %>%
+  column_values_to_snake_case(metabolite) %>%
+  metabolites_to_wider()
 ```
 
 ```{r}
-recipe(class~metabolite_lipid_ch_3_1 + age + gender,
-       data = lipidomics_wider)
+recipe(class ~ metabolite_lipid_ch_3_1 + age + gender,
+  data = lipidomics_wider
+)
 ```
 
 ```{r}
-recipe(lipidomics_wider) %>% 
-    update_role(metabolite_lipid_ch_3_1,age,gender,
-                new_role="predictor") %>% 
-    update_role(class, new_role = "outcome") %>% 
-    step_normalize(starts_with("metabolite_"))
+recipe(lipidomics_wider) %>%
+  update_role(metabolite_lipid_ch_3_1, age, gender,
+    new_role = "predictor"
+  ) %>%
+  update_role(class, new_role = "outcome") %>%
+  step_normalize(starts_with("metabolite_"))
+```
+
+```{r}
+recipe_specs <- lipidomics_wider %>%
+  create_recipe_spec(metabolite_lipid_ch_3_1)
+recipe_specs
 ```
