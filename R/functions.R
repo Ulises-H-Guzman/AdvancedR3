@@ -15,3 +15,16 @@ descriptive_stats <- function(data) {
         dplyr::mutate(dplyr::across(dplyr::where(is.numeric), ~ round(.x, digits = 1)))
 
 }
+
+
+#' Title
+#'
+#' @param data
+#'
+#' @return plot of distributions
+
+plot_distributions <- function(data){
+    data %>% ggplot(aes(value)) + geom_histogram()+
+        facet_wrap(vars(metabolite),scales = "free")
+}
+

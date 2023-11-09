@@ -29,6 +29,18 @@ descriptive_stats(lipidomics)
 
 ```
 
+```{r}
+# Code chunk
+
+
+
+
+
+
+
+
+```
+
 ## This is poorly formatted
 
 -   Definitely should have an empty space above this list.
