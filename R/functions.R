@@ -51,9 +51,12 @@ column_values_to_snake_case <- function(data, cols) {
 #'
 #' @return wider data_frame
 
-metabolites_to_wider = function(data){
-    data %>% tidyr::pivot_wider(names_from = metabolite, value_from = value,
-                                values_fn = mean,
-                                names_prefix = "metabolite_")
+metabolites_to_wider <- function(data) {
+    data %>%
+        tidyr::pivot_wider(
+            names_from = metabolite,
+            values_from = value,
+            values_fn = mean,
+            names_prefix = "metabolite_"
+        )
 }
-
