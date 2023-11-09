@@ -32,12 +32,7 @@ descriptive_stats(lipidomics)
 ```{r}
 # Code chunk
 
-
-
-
-
-
-
+plot_distributions(lipidomics)
 
 ```
 
