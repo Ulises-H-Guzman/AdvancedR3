@@ -13,12 +13,21 @@ editor:
 ## Header 1
 
 ```{r setup}
+library(tidyverse)
+source(here::here("R/functions.R"))
+lipidomics <- read_csv(here::here("data/lipidomics.csv"))
 #| include: false
-knitr::opts_chunk$set(echo = TRUE)
+#knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
+#Basic statistics
+
+```{r basic_stats}
 # Code chunk
+lipidomics %>%
+    group_by(metabolite) %>%
+    summarise(across(value, list(mean = mean, sd = sd))) %>%
+    mutate(across(where(is.numeric), ~round(.x, digits = 1)))
 ```
 
 ## This is poorly formatted
