@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Ulises H Guzman">
+
+<title>Lipidomics analysis - Draft Quarto document</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Lipidomics analysis</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../doc/learning.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Report</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Draft Quarto document</h1>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Ulises H Guzman <a href="https://orcid.org/0000-0000-0000-0000" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+  </div>
+    <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            NNF Center for Protein research
+          </p>
+      </div>
+    </div>
+
+<div class="quarto-title-meta">
+
+      
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="header-1" class="level2">
+<h2 class="anchored" data-anchor-id="header-1">Header 1</h2>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tidyverse' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggplot2' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tibble' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tidyr' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'readr' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'purrr' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'dplyr' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'stringr' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'forcats' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'lubridate' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.3     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'targets' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tidymodels' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching packages ────────────────────────────────────── tidymodels 1.1.1 ──
+✔ broom        1.0.5     ✔ rsample      1.2.0
+✔ dials        1.2.0     ✔ tune         1.1.2
+✔ infer        1.0.5     ✔ workflows    1.1.3
+✔ modeldata    1.2.0     ✔ workflowsets 1.0.1
+✔ parsnip      1.1.1     ✔ yardstick    1.2.0
+✔ recipes      1.0.8     </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'broom' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'dials' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'scales' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'infer' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'modeldata' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'parsnip' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'recipes' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'rsample' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tune' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'workflows' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'workflowsets' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'yardstick' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Conflicts ───────────────────────────────────────── tidymodels_conflicts() ──
+✖ scales::discard() masks purrr::discard()
+✖ dplyr::filter()   masks stats::filter()
+✖ recipes::fixed()  masks stringr::fixed()
+✖ dplyr::lag()      masks stats::lag()
+✖ yardstick::spec() masks readr::spec()
+✖ recipes::step()   masks stats::step()
+• Learn how to get started at https://www.tidymodels.org/start/</code></pre>
+</div>
+</div>
+<p>#Results</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>Description statistics of the metabolites</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Metabolite</th>
+<th style="text-align: left;">Mean SD</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">CDCl3 (solvent)</td>
+<td style="text-align: left;">180 (SUM 24</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">value_sd})</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Cholesterol</td>
+<td style="text-align: left;">18.6 (SUM 24</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">value_sd})</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">FA -CH2CH2COO-</td>
+<td style="text-align: left;">33.6 (SUM 24</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">value_sd})</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lipid -CH2-</td>
+<td style="text-align: left;">536.6 (SUM 24</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">value_sd})</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lipid CH3- 1</td>
+<td style="text-align: left;">98.3 (SUM 24</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">value_sd})</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lipid CH3- 2</td>
+<td style="text-align: left;">168.2 (SUM 24</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">value_sd})</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MUFA+PUFA</td>
+<td style="text-align: left;">32.9 (SUM 24</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">value_sd})</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PUFA</td>
+<td style="text-align: left;">30 (SUM 24</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">value_sd})</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Phosphatidycholine</td>
+<td style="text-align: left;">31.7 (SUM 24</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">value_sd})</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Phosphatidylethanolamine</td>
+<td style="text-align: left;">10 (SUM 24</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">value_sd})</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Phospholipids</td>
+<td style="text-align: left;">2.7 (SUM 24</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">value_sd})</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">TMS (interntal standard)</td>
+<td style="text-align: left;">123 (SUM 24</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">value_sd})</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="learning_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Logistic Regression Model Specification (classification)
+
+Computational engine: glm </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 504 × 6
+   code   gender   age class metabolite                value
+   &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;                     &lt;dbl&gt;
+ 1 ERI109 M         25 CT    tms_interntal_standard   208.  
+ 2 ERI109 M         25 CT    cholesterol               19.8 
+ 3 ERI109 M         25 CT    lipid_ch_3_1              44.1 
+ 4 ERI109 M         25 CT    lipid_ch_3_2             147.  
+ 5 ERI109 M         25 CT    cholesterol               27.2 
+ 6 ERI109 M         25 CT    lipid_ch_2               587.  
+ 7 ERI109 M         25 CT    fa_ch_2_ch_2_coo          31.6 
+ 8 ERI109 M         25 CT    pufa                      29.0 
+ 9 ERI109 M         25 CT    phosphatidylethanolamine   6.78
+10 ERI109 M         25 CT    phosphatidycholine        41.7 
+# ℹ 494 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 36 × 16
+   code   gender   age class metabolite_TMS (interntal …¹ metabolite_Cholesterol
+   &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;                        &lt;dbl&gt;                  &lt;dbl&gt;
+ 1 ERI109 M         25 CT                           208.                   18.6 
+ 2 ERI111 M         39 CT                           219.                   20.8 
+ 3 ERI163 W         58 CT                            57.1                  15.5 
+ 4 ERI375 M         24 CT                            19.2                  10.2 
+ 5 ERI376 M         26 CT                            35.4                  13.5 
+ 6 ERI391 M         31 CT                            30.4                   9.53
+ 7 ERI392 M         24 CT                            21.7                   9.87
+ 8 ERI79  W         26 CT                           185.                   17.6 
+ 9 ERI81  M         52 CT                           207.                   17.0 
+10 ERI83  M         25 CT                           322.                   19.7 
+# ℹ 26 more rows
+# ℹ abbreviated name: ¹​`metabolite_TMS (interntal standard)`
+# ℹ 10 more variables: `metabolite_Lipid CH3- 1` &lt;dbl&gt;,
+#   `metabolite_Lipid CH3- 2` &lt;dbl&gt;, `metabolite_Lipid -CH2-` &lt;dbl&gt;,
+#   `metabolite_FA -CH2CH2COO-` &lt;dbl&gt;, metabolite_PUFA &lt;dbl&gt;,
+#   metabolite_Phosphatidylethanolamine &lt;dbl&gt;,
+#   metabolite_Phosphatidycholine &lt;dbl&gt;, metabolite_Phospholipids &lt;dbl&gt;, …</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Recipe ──────────────────────────────────────────────────────────────────────</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Inputs </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Number of variables by role</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>outcome:   1
+predictor: 3</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Recipe ──────────────────────────────────────────────────────────────────────</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Inputs </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Number of variables by role</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>outcome:          1
+predictor:        3
+undeclared role: 12</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Operations </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>• Centering and scaling for: starts_with("metabolite_")</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Recipe ──────────────────────────────────────────────────────────────────────</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Inputs </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Number of variables by role</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>outcome:          1
+predictor:        3
+undeclared role: 12</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Operations </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>• Centering and scaling for: tidyselect::starts_with("metabolite_")</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>══ Workflow ════════════════════════════════════════════════════════════════════
+Preprocessor: Recipe
+Model: logistic_reg()
+
+── Preprocessor ────────────────────────────────────────────────────────────────
+1 Recipe Step
+
+• step_normalize()
+
+── Model ───────────────────────────────────────────────────────────────────────
+Logistic Regression Model Specification (classification)
+
+Computational engine: glm </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>══ Workflow ════════════════════════════════════════════════════════════════════
+Preprocessor: Recipe
+Model: logistic_reg()
+
+── Preprocessor ────────────────────────────────────────────────────────────────
+1 Recipe Step
+
+• step_normalize()
+
+── Model ───────────────────────────────────────────────────────────────────────
+Logistic Regression Model Specification (classification)
+
+Computational engine: glm </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>══ Workflow [trained] ══════════════════════════════════════════════════════════
+Preprocessor: Recipe
+Model: logistic_reg()
+
+── Preprocessor ────────────────────────────────────────────────────────────────
+1 Recipe Step
+
+• step_normalize()
+
+── Model ───────────────────────────────────────────────────────────────────────
+
+Call:  stats::glm(formula = ..y ~ ., family = stats::binomial, data = data)
+
+Coefficients:
+            (Intercept)                  genderW                      age  
+                1.93190                  0.82191                 -0.04312  
+metabolite_lipid_ch_3_1  
+                3.79488  
+
+Degrees of Freedom: 35 Total (i.e. Null);  32 Residual
+Null Deviance:      49.91 
+Residual Deviance: 19.93    AIC: 27.93</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 5
+  term                    estimate std.error statistic p.value
+  &lt;chr&gt;                      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+1 (Intercept)                6.90     2.17       0.891 0.373  
+2 genderW                    2.27     1.25       0.657 0.511  
+3 age                        0.958    0.0558    -0.772 0.440  
+4 metabolite_lipid_ch_3_1   44.5      1.41       2.70  0.00697</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 5
+  term                    estimate std.error statistic p.value
+  &lt;chr&gt;                      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+1 (Intercept)                6.90     2.17       0.891 0.373  
+2 genderW                    2.27     1.25       0.657 0.511  
+3 age                        0.958    0.0558    -0.772 0.440  
+4 metabolite_lipid_ch_3_1   44.5      1.41       2.70  0.00697</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 5
+  term                    estimate std.error statistic p.value
+  &lt;chr&gt;                      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+1 (Intercept)                6.90     2.17       0.891 0.373  
+2 genderW                    2.27     1.25       0.657 0.511  
+3 age                        0.958    0.0558    -0.772 0.440  
+4 metabolite_lipid_ch_3_1   44.5      1.41       2.70  0.00697</code></pre>
+</div>
+</div>
+<p>##Running multiple models</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+# A tibble: 36 × 5
+   code   gender   age class metabolite_cd_cl_3_solvent
+   &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;                      &lt;dbl&gt;
+ 1 ERI109 M         25 CT                          166.
+ 2 ERI111 M         39 CT                          171.
+ 3 ERI163 W         58 CT                          262.
+ 4 ERI375 M         24 CT                          172.
+ 5 ERI376 M         26 CT                          300.
+ 6 ERI391 M         31 CT                          241.
+ 7 ERI392 M         24 CT                          172.
+ 8 ERI79  W         26 CT                          148.
+ 9 ERI81  M         52 CT                          168.
+10 ERI83  M         25 CT                          253.
+# ℹ 26 more rows
+
+[[2]]
+# A tibble: 36 × 5
+   code   gender   age class metabolite_cholesterol
+   &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;                  &lt;dbl&gt;
+ 1 ERI109 M         25 CT                     18.6 
+ 2 ERI111 M         39 CT                     20.8 
+ 3 ERI163 W         58 CT                     15.5 
+ 4 ERI375 M         24 CT                     10.2 
+ 5 ERI376 M         26 CT                     13.5 
+ 6 ERI391 M         31 CT                      9.53
+ 7 ERI392 M         24 CT                      9.87
+ 8 ERI79  W         26 CT                     17.6 
+ 9 ERI81  M         52 CT                     17.0 
+10 ERI83  M         25 CT                     19.7 
+# ℹ 26 more rows
+
+[[3]]
+# A tibble: 36 × 5
+   code   gender   age class metabolite_fa_ch_2_ch_2_coo
+   &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;
+ 1 ERI109 M         25 CT                           31.6
+ 2 ERI111 M         39 CT                           28.9
+ 3 ERI163 W         58 CT                           36.6
+ 4 ERI375 M         24 CT                           39.4
+ 5 ERI376 M         26 CT                           52.1
+ 6 ERI391 M         31 CT                           42.8
+ 7 ERI392 M         24 CT                           39.9
+ 8 ERI79  W         26 CT                           32.7
+ 9 ERI81  M         52 CT                           28.4
+10 ERI83  M         25 CT                           26.5
+# ℹ 26 more rows
+
+[[4]]
+# A tibble: 36 × 5
+   code   gender   age class metabolite_lipid_ch_2
+   &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;                 &lt;dbl&gt;
+ 1 ERI109 M         25 CT                     587.
+ 2 ERI111 M         39 CT                     585.
+ 3 ERI163 W         58 CT                     558.
+ 4 ERI375 M         24 CT                     606.
+ 5 ERI376 M         26 CT                     554.
+ 6 ERI391 M         31 CT                     597.
+ 7 ERI392 M         24 CT                     607.
+ 8 ERI79  W         26 CT                     546.
+ 9 ERI81  M         52 CT                     593.
+10 ERI83  M         25 CT                     606.
+# ℹ 26 more rows
+
+[[5]]
+# A tibble: 36 × 5
+   code   gender   age class metabolite_lipid_ch_3_1
+   &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;                   &lt;dbl&gt;
+ 1 ERI109 M         25 CT                       44.1
+ 2 ERI111 M         39 CT                       28.1
+ 3 ERI163 W         58 CT                       75.1
+ 4 ERI375 M         24 CT                       22.0
+ 5 ERI376 M         26 CT                       29.5
+ 6 ERI391 M         31 CT                       38.0
+ 7 ERI392 M         24 CT                       34.8
+ 8 ERI79  W         26 CT                      109. 
+ 9 ERI81  M         52 CT                       49.6
+10 ERI83  M         25 CT                       29.9
+# ℹ 26 more rows
+
+[[6]]
+# A tibble: 36 × 5
+   code   gender   age class metabolite_lipid_ch_3_2
+   &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;                   &lt;dbl&gt;
+ 1 ERI109 M         25 CT                       147.
+ 2 ERI111 M         39 CT                       153.
+ 3 ERI163 W         58 CT                       144.
+ 4 ERI375 M         24 CT                       220.
+ 5 ERI376 M         26 CT                       282.
+ 6 ERI391 M         31 CT                       220.
+ 7 ERI392 M         24 CT                       215.
+ 8 ERI79  W         26 CT                       153.
+ 9 ERI81  M         52 CT                       150.
+10 ERI83  M         25 CT                       153.
+# ℹ 26 more rows
+
+[[7]]
+# A tibble: 36 × 5
+   code   gender   age class metabolite_mufa_pufa
+   &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;                &lt;dbl&gt;
+ 1 ERI109 M         25 CT                  50.6  
+ 2 ERI111 M         39 CT                  53.2  
+ 3 ERI163 W         58 CT                  60.7  
+ 4 ERI375 M         24 CT                   0.532
+ 5 ERI376 M         26 CT                   1.15 
+ 6 ERI391 M         31 CT                   0.602
+ 7 ERI392 M         24 CT                   0.422
+ 8 ERI79  W         26 CT                  36.3  
+ 9 ERI81  M         52 CT                  40.1  
+10 ERI83  M         25 CT                  39.3  
+# ℹ 26 more rows
+
+[[8]]
+# A tibble: 36 × 5
+   code   gender   age class metabolite_phosphatidycholine
+   &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;                         &lt;dbl&gt;
+ 1 ERI109 M         25 CT                             41.7
+ 2 ERI111 M         39 CT                             52.9
+ 3 ERI163 W         58 CT                             35.3
+ 4 ERI375 M         24 CT                             66.9
+ 5 ERI376 M         26 CT                             32.7
+ 6 ERI391 M         31 CT                             62.9
+ 7 ERI392 M         24 CT                             64.3
+ 8 ERI79  W         26 CT                             41.0
+ 9 ERI81  M         52 CT                             56.1
+10 ERI83  M         25 CT                             57.8
+# ℹ 26 more rows
+
+[[9]]
+# A tibble: 36 × 5
+   code   gender   age class metabolite_phosphatidylethanolamine
+   &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;                               &lt;dbl&gt;
+ 1 ERI109 M         25 CT                                   6.78
+ 2 ERI111 M         39 CT                                   3.66
+ 3 ERI163 W         58 CT                                   3.59
+ 4 ERI375 M         24 CT                                   3.59
+ 5 ERI376 M         26 CT                                   2.33
+ 6 ERI391 M         31 CT                                   1.46
+ 7 ERI392 M         24 CT                                   2.00
+ 8 ERI79  W         26 CT                                   4.93
+ 9 ERI81  M         52 CT                                   5.20
+10 ERI83  M         25 CT                                   5.01
+# ℹ 26 more rows
+
+[[10]]
+# A tibble: 36 × 5
+   code   gender   age class metabolite_phospholipids
+   &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;                    &lt;dbl&gt;
+ 1 ERI109 M         25 CT                        5.58
+ 2 ERI111 M         39 CT                        6.16
+ 3 ERI163 W         58 CT                        5.19
+ 4 ERI375 M         24 CT                        4.20
+ 5 ERI376 M         26 CT                        3.27
+ 6 ERI391 M         31 CT                        4.71
+ 7 ERI392 M         24 CT                        4.14
+ 8 ERI79  W         26 CT                        5.70
+ 9 ERI81  M         52 CT                        5.46
+10 ERI83  M         25 CT                        4.89
+# ℹ 26 more rows
+
+[[11]]
+# A tibble: 36 × 5
+   code   gender   age class metabolite_pufa
+   &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;
+ 1 ERI109 M         25 CT              29.0 
+ 2 ERI111 M         39 CT              27.4 
+ 3 ERI163 W         58 CT              35.5 
+ 4 ERI375 M         24 CT               6.92
+ 5 ERI376 M         26 CT               3.22
+ 6 ERI391 M         31 CT               3.43
+ 7 ERI392 M         24 CT               3.52
+ 8 ERI79  W         26 CT              18.7 
+ 9 ERI81  M         52 CT              20.7 
+10 ERI83  M         25 CT              18.2 
+# ℹ 26 more rows
+
+[[12]]
+# A tibble: 36 × 5
+   code   gender   age class metabolite_tms_interntal_standard
+   &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;                             &lt;dbl&gt;
+ 1 ERI109 M         25 CT                                208. 
+ 2 ERI111 M         39 CT                                219. 
+ 3 ERI163 W         58 CT                                 57.1
+ 4 ERI375 M         24 CT                                 19.2
+ 5 ERI376 M         26 CT                                 35.4
+ 6 ERI391 M         31 CT                                 30.4
+ 7 ERI392 M         24 CT                                 21.7
+ 8 ERI79  W         26 CT                                185. 
+ 9 ERI81  M         52 CT                                207. 
+10 ERI83  M         25 CT                                322. 
+# ℹ 26 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: glm.fit: algorithm did not converge</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 5
+   term                                 estimate  std.error statistic p.value
+   &lt;chr&gt;                                   &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+ 1 metabolite_cd_cl_3_solvent          8.70e-  2      0.865 -2.82     0.00475
+ 2 metabolite_cholesterol              2.97e+  0      0.458  2.38     0.0175 
+ 3 metabolite_fa_ch_2_ch_2_coo         1.52e+  0      0.387  1.09     0.276  
+ 4 metabolite_lipid_ch_2               2.59e-  3      3.14  -1.90     0.0578 
+ 5 metabolite_lipid_ch_3_1             4.45e+  1      1.41   2.70     0.00697
+ 6 metabolite_lipid_ch_3_2             8.85e-  1      0.361 -0.339    0.734  
+ 7 metabolite_mufa_pufa                4.56e-  1      0.449 -1.75     0.0798 
+ 8 metabolite_phosphatidycholine       1.28e-120 116628.    -0.00237  0.998  
+ 9 metabolite_phosphatidylethanolamine 2.69e+  1      1.32   2.49     0.0129 
+10 metabolite_phospholipids            2.39e- 19  68964.    -0.000622 1.00   
+11 metabolite_pufa                     3.27e+  0      0.560  2.11     0.0345 
+12 metabolite_tms_interntal_standard   5.62e-  2      0.990 -2.91     0.00363</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 6
+   term                         metabolite  estimate std.error statistic p.value
+   &lt;chr&gt;                        &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+ 1 metabolite_tms_interntal_st… TMS (inte… 5.62e-  2   9.90e-1 -2.91     0.00363
+ 2 metabolite_cholesterol       Cholester… 2.97e+  0   4.58e-1  2.38     0.0175 
+ 3 metabolite_lipid_ch_3_1      Lipid CH3… 4.45e+  1   1.41e+0  2.70     0.00697
+ 4 metabolite_lipid_ch_3_2      Lipid CH3… 8.85e-  1   3.61e-1 -0.339    0.734  
+ 5 metabolite_lipid_ch_2        Lipid -CH… 2.59e-  3   3.14e+0 -1.90     0.0578 
+ 6 metabolite_fa_ch_2_ch_2_coo  FA -CH2CH… 1.52e+  0   3.87e-1  1.09     0.276  
+ 7 metabolite_pufa              PUFA       3.27e+  0   5.60e-1  2.11     0.0345 
+ 8 metabolite_phosphatidyletha… Phosphati… 2.69e+  1   1.32e+0  2.49     0.0129 
+ 9 metabolite_phosphatidycholi… Phosphati… 1.28e-120   1.17e+5 -0.00237  0.998  
+10 metabolite_phospholipids     Phospholi… 2.39e- 19   6.90e+4 -0.000622 1.00   
+11 metabolite_mufa_pufa         MUFA+PUFA  4.56e-  1   4.49e-1 -1.75     0.0798 
+12 metabolite_cd_cl_3_solvent   CDCl3 (so… 8.70e-  2   8.65e-1 -2.82     0.00475</code></pre>
+</div>
+</div>
+<section id="figure-of-model-estimates" class="level3">
+<h3 class="anchored" data-anchor-id="figure-of-model-estimates">Figure of model estimates</h3>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 6
+   term                         metabolite  estimate std.error statistic p.value
+   &lt;chr&gt;                        &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+ 1 metabolite_tms_interntal_st… TMS (inte… 5.62e-  2   9.90e-1 -2.91     0.00363
+ 2 metabolite_cholesterol       Cholester… 2.97e+  0   4.58e-1  2.38     0.0175 
+ 3 metabolite_lipid_ch_3_1      Lipid CH3… 4.45e+  1   1.41e+0  2.70     0.00697
+ 4 metabolite_lipid_ch_3_2      Lipid CH3… 8.85e-  1   3.61e-1 -0.339    0.734  
+ 5 metabolite_lipid_ch_2        Lipid -CH… 2.59e-  3   3.14e+0 -1.90     0.0578 
+ 6 metabolite_fa_ch_2_ch_2_coo  FA -CH2CH… 1.52e+  0   3.87e-1  1.09     0.276  
+ 7 metabolite_pufa              PUFA       3.27e+  0   5.60e-1  2.11     0.0345 
+ 8 metabolite_phosphatidyletha… Phosphati… 2.69e+  1   1.32e+0  2.49     0.0129 
+ 9 metabolite_phosphatidycholi… Phosphati… 1.28e-120   1.17e+5 -0.00237  0.998  
+10 metabolite_phospholipids     Phospholi… 2.39e- 19   6.90e+4 -0.000622 1.00   
+11 metabolite_mufa_pufa         MUFA+PUFA  4.56e-  1   4.49e-1 -1.75     0.0798 
+12 metabolite_cd_cl_3_solvent   CDCl3 (so… 8.70e-  2   8.65e-1 -2.82     0.00475</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="learning_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="learning_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
