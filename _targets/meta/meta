@@ -1,5 +1,5 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
-.Random.seed|object|8fc1efc58b51fa3d|||||||||||||||
+.Random.seed|object|ed2d48996078e171|||||||||||||||
 add_original_metabolite_names|function|ab21d023df5da19e|||||||||||||||
 calculate_estimates|function|2537ab050b7d8e25|||||||||||||||
 column_values_to_snake_case|function|074e817e19db405b|||||||||||||||
@@ -11,14 +11,14 @@ df_model_estimates|stem|4dc9f0eb8bb6f620|c54121e4cf891739|5a53cb291fe1a6a2|69475
 df_stats_by_metabolite|stem|c2aceaf006740375|06bc50c38cf95e77|26a8bb21619664f9|1571712024||t19670.3757427972s|e8f841da6aca5d39|402|rds|local|vector|||0.16||
 fig_metabolite_distribution|stem|813389875dd68467|fab028a148ebe7e6|293b31af6ae633ca|1263992679||t19670.4246552908s|338c3b712e9af6e8|83729|rds|local|vector|||0.02||
 fig_model_estimates|stem|06524e1cab8054b1|16a1b6385d9d61a3|35bc23dacf380e77|1462996731||t19671.4208440102s|26390876667e6e23|53195|rds|local|vector|||0||
-file|stem|301125be9d4645ea|6f5a37980713f8c6|ef46db3751d8e999|-1301001980|data/lipidomics.csv|t19666.8422138328s|6f631a918b070454|24313|file|local|vector|||0.02|package tibble was built under R version 4.2.3|
+file|stem|768e973db5d94bf7|6f5a37980713f8c6|ef46db3751d8e999|-1301001980|data/lipidomics.csv|t19671.5353211321s|d4615a4de7b11c6d|24818|file|local|vector|||2.69|package usethis was built under R version 4.2.3. package readr was built under R version 4.2.3. package renv was built under R version 4.2.3. package dplyr was built under R version 4.2.3. package fs was built under R version 4.2.3. package here was built under R version 4.2.3. package readxl was built under R version 4.2.3. package snakecase was built under R version 4.2.3. package stringr was built under R version 4.2.3. package tidyr was built under R version 4.2.3. package broom was built under R version 4.2.3. package ggplot2 was built under R version 4.2.3. package knitr was built under R version 4.2.3. package parsnip was built under R version 4.2.3. package recipes was built under R version 4.2.3. package remotes was built under R version 4.2.3. package rmarkdown was built under R version 4.2.3. package workflows was built under R version 4.2.3. package tidymodels was built under R version 4.2.3. package dials was built under R version 4.2.3. package scales was built under R version 4.2.3. package infer was built under R version 4.2.3. package modeldata was built under R version 4.2.3. package purrr was built under R version 4.2.3. package rsample was built under R version 4.2.3. package tibble was built under R version 4.2.3. package tune was built under R version 4.2.3. package workflowsets was built under R version 4.2.3. package yardstick was built under R version 4.2.3. package tidyverse was built under R version 4.2.3. package forcats was built under R version 4.2.3. package lubridate was built under R version 4.2.3. package glue was built under R version 4.2.3. package tidyselect was built under R version 4.2.3|
 generate_model_results|function|5093f102e2b500b2|||||||||||||||
-lipidomics|stem|b3223e0d05d576b4|7940706ee8ea8eb8|74cf55e34db4cd4e|-1170387675||t19670.3894006923s|03f6889c95fdc837|4883|rds|local|vector|||0.11||
+lipidomics|stem|b3223e0d05d576b4|7940706ee8ea8eb8|20e349d4e45942fb|-1170387675||t19671.5369715717s|03f6889c95fdc837|4883|rds|local|vector|||0.45||
 metabolites_to_wider|function|8eff1105ed5e7f18|||||||||||||||
 model|stem|c4164d976bc69d66|ae83bc723fe2997c|f737758389124ade|1816327236||t19670.3751627094s|241bf920421d9078|105|rds|local|vector|||0||
 plot_distributions|function|fe45d2411d2bfd6a|||||||||||||||
 plot_estimates|function|e710467c98dca542|||||||||||||||
 quarto_doc|stem|dfde458ac4b93a56|7501c14284a43c0a|a0285697f7306f4b|1886859688|doc/learning.html*doc/learning.qmd|t19671.4198483573s|99bc7a9b9f1b9112|65202|file|local|vector|||19.02||
-quarto_website|stem|072095f50f180953|1cc575874a62b65d|4afd0eb28d319461|1602464050|_site*doc/learning.qmd*index.qmd*TODO.md*_quarto.yml|t19671.524582068s|eb79b6b1f253c6e4|1116595|file|local|vector|||17.61||
+quarto_website|stem|595f27136b9712b6|1cc575874a62b65d|4afd0eb28d319461|1602464050|_site*doc/learning.qmd*index.qmd*TODO.md*_quarto.yml|t19671.5370491726s|c236ae9ba4dbf619|1116656|file|local|vector|||6.06||
 split_by_metabolite|function|a2e9ee2dd226dea7|||||||||||||||
 tidy_model_output|function|4ff0d9127acce476|||||||||||||||
