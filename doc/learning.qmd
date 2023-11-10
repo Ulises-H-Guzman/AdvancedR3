@@ -1,6 +1,14 @@
 ---
 title: "Draft Quarto document"
-author: "Your Name"
+author: 
+  - name: "Ulises H Guzman"
+    orcid: 0000-0000-0000-0000
+    email: uliseshguzman@gmail.com
+    affiliations:
+      - name: NNF Center for Protein research
+        address: København
+        city: Copenhagen 
+        postal-code: 2200
 format: html
 execute:
   echo: true
