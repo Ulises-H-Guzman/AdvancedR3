@@ -20,4 +20,4 @@ editor:
     canonical: true
 
 execute:
-  freeze: auto
+  freeze: TRUE
