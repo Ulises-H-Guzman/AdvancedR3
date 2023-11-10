@@ -9,11 +9,11 @@ usethis::use_git(".Rbuildignore")
 #' @return A data.frame/tibble
 
 descriptive_stats <- function(data) {
-    data %>%
-        dplyr::group_by(metabolite) %>%
-        dplyr::summarise(across(value, list(mean = mean, sd = sd))) %>%
-        dplyr::mutate(dplyr::across(dplyr::where(is.numeric), ~ round(.x, digits = 1)))
-    }
+  data %>%
+    dplyr::group_by(metabolite) %>%
+    dplyr::summarise(across(value, list(mean = mean, sd = sd))) %>%
+    dplyr::mutate(dplyr::across(dplyr::where(is.numeric), ~ round(.x, digits = 1)))
+}
 
 
 #' Title
@@ -22,9 +22,10 @@ descriptive_stats <- function(data) {
 #'
 #' @return plot of distributions
 
-plot_distributions <- function(data){
-    data %>% ggplot(aes(value)) + geom_histogram()+
-        facet_wrap(vars(metabolite),scales = "free")
+plot_distributions <- function(data) {
+  data %>% ggplot(aes(value)) +
+    geom_histogram() +
+    facet_wrap(vars(metabolite), scales = "free")
 }
 
 
@@ -38,8 +39,8 @@ plot_distributions <- function(data){
 #' @return a data frame
 
 column_values_to_snake_case <- function(data, cols) {
-    data %>%
-        dplyr::mutate(dplyr::across({{ cols }}, snakecase::to_snake_case))
+  data %>%
+    dplyr::mutate(dplyr::across({{ cols }}, snakecase::to_snake_case))
 }
 
 
@@ -52,13 +53,13 @@ column_values_to_snake_case <- function(data, cols) {
 #' @return wider data_frame
 
 metabolites_to_wider <- function(data) {
-    data %>%
-        tidyr::pivot_wider(
-            names_from = metabolite,
-            values_from = value,
-            values_fn = mean,
-            names_prefix = "metabolite_"
-        )
+  data %>%
+    tidyr::pivot_wider(
+      names_from = metabolite,
+      values_from = value,
+      values_fn = mean,
+      names_prefix = "metabolite_"
+    )
 }
 
 
@@ -73,13 +74,14 @@ metabolites_to_wider <- function(data) {
 #'
 #' @return
 
-create_recipe_spec <- function(data,metabolite_variable){
-    recipes::recipe(data) %>%
-        recipes::update_role({{metabolite_variable}},
-                              age,gender, new_role = "predictor") %>%
-        recipes::update_role(class, new_role = "outcome") %>%
-        recipes::step_normalize(tidyselect::starts_with("metabolite_"))
-
+create_recipe_spec <- function(data, metabolite_variable) {
+  recipes::recipe(data) %>%
+    recipes::update_role({{ metabolite_variable }},
+      age, gender,
+      new_role = "predictor"
+    ) %>%
+    recipes::update_role(class, new_role = "outcome") %>%
+    recipes::step_normalize(tidyselect::starts_with("metabolite_"))
 }
 
 
@@ -90,10 +92,10 @@ create_recipe_spec <- function(data,metabolite_variable){
 #' @param recipes_specs recipes specifications
 #'
 #' @return
-create_model_workflow <- function(model_spec,recipes_specs){
-    workflows::workflow() %>%
-        workflows::add_model(model_spec) %>%
-        workflows::add_recipe(recipe_specs)
+create_model_workflow <- function(model_spec, recipes_specs) {
+  workflows::workflow() %>%
+    workflows::add_model(model_spec) %>%
+    workflows::add_recipe(recipe_specs)
 }
 
 
@@ -103,11 +105,39 @@ create_model_workflow <- function(model_spec,recipes_specs){
 #'
 #' @return tidy df
 
-tidy_model_output <- function(workflow_fitted_model){
-    workflow_fitted_model %>%
-        workflows::extract_fit_parsnip() %>%
-        broom::tidy(exponentiate = TRUE)
+tidy_model_output <- function(workflow_fitted_model) {
+  workflow_fitted_model %>%
+    workflows::extract_fit_parsnip() %>%
+    broom::tidy(exponentiate = TRUE)
+}
+
+#' convert to a list of data frames
+#'
+#' @param data lipidomics
+#'
+#' @returnlist of data frames
+
+split_by_metabolite <- function(data) {
+  data %>%
+    column_values_to_snake_case(metabolite) %>%
+    dplyr::group_split(metabolite) %>%
+    purrr::map(metabolites_to_wider)
 }
 
 
+#' Generate the results of the model
+#'
+#' @param data lipidomics dataset
+#'
+#' @return data.frame
 
+generate_model_results <- function(data) {
+    create_model_workflow(
+        parsnip::logistic_reg() %>%
+            parsnip::set_engine("glm"),
+        data %>%
+            create_recipe_spec(tidyselect::starts_with("metabolite_"))
+    ) %>%
+        parsnip::fit(data) %>%
+        tidy_model_output()
+}
