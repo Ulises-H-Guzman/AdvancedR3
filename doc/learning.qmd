@@ -130,4 +130,9 @@ split_by_metabolite(lipidomics)
 
 ```{r}
 
+
+lipidomics %>% split_by_metabolite() %>% 
+    map(generate_model_results) %>% 
+    list_rbind()
+
 ```

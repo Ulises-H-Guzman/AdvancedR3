@@ -125,12 +125,12 @@ split_by_metabolite <- function(data) {
 }
 
 
-#' Generate the results of the model
+#' Generate the results of a model
 #'
-#' @param data lipidomics dataset
+#' @param data The lipidomics dataset.
 #'
-#' @return data.frame
-
+#' @return A data frame.
+#'
 generate_model_results <- function(data) {
     create_model_workflow(
         parsnip::logistic_reg() %>%
