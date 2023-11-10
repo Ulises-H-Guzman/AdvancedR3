@@ -37,8 +37,10 @@ If dependencies have been managed by using
 installing dependencies is as easy as opening the `AdvancedR3.Rproj`
 file and running this command in the console:
 
-    # install.packages("remotes")
-    remotes::install_deps()
+```         
+# install.packages("remotes")
+remotes::install_deps()
+```
 
 You'll need to have remotes installed for this to work.
 
@@ -47,3 +49,7 @@ You'll need to have remotes installed for this to work.
 For more information on this folder and file workflow and setup, check
 out the [prodigenr](https://rostools.github.io/prodigenr) online
 documentation.
+
+Check out the project's
+[https://ulises-h-guzman.github.io/AdvancedR3/](LINK).
+
