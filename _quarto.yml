@@ -14,3 +14,10 @@ format:
 knitr:
   opts_chunk:
     echo: False
+editor:
+  markdown:
+    wrap: 72
+    canonical: true
+
+execute:
+  freeze: auto
