@@ -1,4 +1,4 @@
-usethis::use_git(".Rbuildignore")
+
 
 # Code chunk
 
@@ -95,7 +95,7 @@ create_recipe_spec <- function(data, metabolite_variable) {
 create_model_workflow <- function(model_spec, recipes_specs) {
   workflows::workflow() %>%
     workflows::add_model(model_spec) %>%
-    workflows::add_recipe(recipe_specs)
+    workflows::add_recipe(recipes_specs)
 }
 
 
@@ -141,3 +141,43 @@ generate_model_results <- function(data) {
         parsnip::fit(data) %>%
         tidy_model_output()
 }
+
+
+
+
+#' Add the original metabolite names (not as snakecase) to the model results.
+#'
+#' @param model_results The data frame with the model results.
+#' @param data The original, unprocessed lipidomics dataset.
+#'
+#' @return A data frame.
+#'
+add_original_metabolite_names <- function(model_results, data) {
+    data %>%
+        dplyr::mutate(term = metabolite) %>%
+        column_values_to_snake_case(term) %>%
+        dplyr::mutate(term = stringr::str_c("metabolite_", term)) %>%
+        dplyr::distinct(term, metabolite) %>%
+        dplyr::right_join(model_results, by = "term")
+}
+
+
+#' Calculate the estimates for the model for each metabolite.
+#'
+#' @param data The lipidomics dataset.
+#'
+#' @return A data frame.
+#'
+calculate_estimates <- function(data) {
+    data %>%
+        column_values_to_snake_case(metabolite) %>%
+        dplyr::group_split(metabolite) %>%
+        purrr::map(metabolites_to_wider) %>%
+        purrr::map(generate_model_results) %>%
+        purrr::list_rbind() %>%
+        dplyr::filter(stringr::str_detect(term, "metabolite_")) %>%
+        add_original_metabolite_names(data)
+}
+
+
+
