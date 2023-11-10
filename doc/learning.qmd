@@ -157,4 +157,14 @@ model_estimates
 
 ```{r}
 model_estimates <- tar_read(df_model_estimates)
+model_estimates
+```
+
+```{r}
+plot_estimates(model_estimates)
+```
+
+```{r}
+
+tar_read(fig_model_estimates)
 ```

@@ -165,7 +165,7 @@ add_original_metabolite_names <- function(model_results, data) {
 #' Calculate the estimates for the model for each metabolite.
 #'
 #' @param data The lipidomics dataset.
-#'
+#' %>%
 #' @return A data frame.
 #'
 calculate_estimates <- function(data) {
@@ -179,5 +179,21 @@ calculate_estimates <- function(data) {
         add_original_metabolite_names(data)
 }
 
+#' Plot the estimates and standard errors of the model results.
+#'
+#' @param results The model estimate results.
+#'
+#' @return A ggplot2 figure.
+#'
+plot_estimates <- function(results) {
+    results %>%
+        ggplot2::ggplot(ggplot2::aes(
+            x = estimate, y = metabolite,
+            xmin = estimate - std.error,
+            xmax = estimate + std.error
+        )) +
+        ggplot2::geom_pointrange() +
+        ggplot2::coord_fixed(xlim = c(0, 5))
+}
 
 
